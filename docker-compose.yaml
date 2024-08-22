@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    ports:
+      - "3306:3306"
+    environment:
+      - "POSTGRES_DB=gestion_orquestas"
+      - "POSTGRES_USER=david"
+      - "POSTGRES_PASSWORD=123456"
+    networks:
+      - gestorg
+
+  app:
+    build: .
+    container_name: gestionorquestas
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - gestorg
+    # restart: always
+
+networks:
+  gestorg:

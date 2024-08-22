@@ -1,0 +1,12 @@
+A desarrollar:
+Crear una sección de "contacto" con los campos Motivo, Mensaje, Nombre, Email, telefono, codigo postal.
+
+    Backend:
+        En model, crear la clase con los campos
+        En repository, definir métodos de Hibernate que se van a usar
+        En service, definir la capa de negocio
+        En rest, crear endpoints que se van a usar
+    Frontend:
+        En router, definir ruta a la sección contactos
+        En views, crear vista de la sección contactos
+        En layouts/UserLayout.vue, agregar acceso a la sección contactos

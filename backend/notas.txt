@@ -1,0 +1,36 @@
+https://www.mercadopago.com.ar/developers/es/docs/your-integrations/test/cards
+
+Mastercard	        5031 7557 3453 0604	        123	        11/25
+Visa	            4509 9535 6623 3704	        123	        11/25
+American Express	3711 803032 57522	        1234	    11/25
+
+
+public | clothe_scales                     | table | david
+ public | clothe_types                      | table | david
+ public | clothes                           | table | david
+ public | composers                         | table | david
+ public | errors                            | table | david
+ public | imagen                            | table | david
+ public | meeting_minutes                   | table | david
+ public | mercadopago_backurls              | table | david
+ public | mercadopago_notifications         | table | david
+ public | musical_resources                 | table | david
+ public | musical_resources_types           | table | david
+ public | news                              | table | david
+ public | news_content                      | table | david
+ public | news_content_types                | table | david
+ public | payment_requests                  | table | david
+ public | roles                             | table | david
+ public | shows                             | table | david
+ public | songs                             | table | david
+ public | surveys                           | table | david
+ public | surveys_questions                 | table | david
+ public | surveys_questions_answers         | table | david
+ public | surveys_questions_options         | table | david
+ public | surveys_questions_options_answers | table | david
+ public | surveys_questions_types           | table | david
+ public | tickets                           | table | david
+ public | users                             | table | david
+ public | users_clothes                     | table | david
+ public | users_meeting_minutes             | table | david
+ public | users_roles                       | table | david
