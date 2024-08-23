@@ -44,7 +44,7 @@ import axios from "@/helpers/axiosInterceptor";
 export default {
   data() {
     return {
-      quantity: 0,
+      quantity: 1,
       show: null,
       processing: false
     };
@@ -64,6 +64,7 @@ export default {
     axios.get("/api/shows", { params: { id: showId } }).then((resp) => {
       this.show = resp.data;
       this.loading = false;
+      this.processing =false;
     });
   },
   methods: {
@@ -74,7 +75,7 @@ export default {
         quantity: this.quantity,
         show_id: this.show.id
       })
-      .then(response => {
+      .then(async response => {
         // Aquí puedes agregar alguna lógica si necesitas realizar alguna acción después de guardar el ticket
         console.log("Ticket guardado exitosamente:", response.data);
         this.$router.push({ path: "/tickets" });
