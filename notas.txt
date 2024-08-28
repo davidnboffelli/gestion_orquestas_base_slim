@@ -1,8 +1,8 @@
 A desarrollar:
-Crear una sección de "contacto" con los campos Motivo, Mensaje, Nombre, Email, telefono, codigo postal.
+Crear una sección de "contacto" con los campos Motivo, Mensaje, Nombre, Email, telefono, codigo postal, fecha.
 
     Backend:
-        En model, crear la clase con los campos
+        En model, crear la clase con los campos. Que la fecha sea siempre la del momento de creacion de la instancia
         En repository, definir métodos de Hibernate que se van a usar
         En service, definir la capa de negocio
         En rest, crear endpoints que se van a usar
@@ -10,3 +10,13 @@ Crear una sección de "contacto" con los campos Motivo, Mensaje, Nombre, Email, 
         En router, definir ruta a la sección contactos
         En views, crear vista de la sección contactos
         En layouts/UserLayout.vue, agregar acceso a la sección contactos
+
+Como admin, poder acceder al listado de mensajes y marcarlos como "Checkeados"
+    Backend:
+        Agregar campo booleando "checked" al modelo y ponerlo "false" como default
+    Frontend:
+        En views, crear vista para ver el listado de mensajes en formato tabla
+        En router, agregar la ruta a la tabla de mensajes
+        Agregar acceso a la vista nueva desde el dashboard de admin
+
+Si esto no es posible, al menos corroborar que el mensaje fue grabado ingresando directamente a la base de datos y viendo el mensaje.
