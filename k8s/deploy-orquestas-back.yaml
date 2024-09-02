@@ -38,5 +38,3 @@ spec:
             value: david
           - name: SPRING_DB_PASSWORD
             value: "123456"
-      # imagePullSecrets:
-      # - name: regcredprod
