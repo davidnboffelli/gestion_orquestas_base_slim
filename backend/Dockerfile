@@ -18,7 +18,7 @@ FROM openjdk:11-jre-slim
 WORKDIR /app
 
 # Copiar el archivo JAR generado desde la fase de construcción
-COPY --from=build /app/target/gestion_orquestas-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/gestion_orquestas.jar app.jar
 
 # Exponer el puerto en el que la aplicación se ejecutará
 EXPOSE 8080

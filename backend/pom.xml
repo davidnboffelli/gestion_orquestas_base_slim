@@ -11,12 +11,16 @@
 	<groupId>com.gruposei</groupId>
 	<artifactId>gestion_orquestas</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<!-- <configuration>
+		<finalName>myJar</finalName>
+	</configuration> -->
 	<name>gestion_orquestas</name>
 	<description>gestion_orquestas project</description>
 	<properties>
 		<java.version>8</java.version>
 		<maven.compiler.source>8</maven.compiler.source>
 		<maven.compiler.target>8</maven.compiler.target>
+		<jar.finalName>eaea</jar.finalName>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -130,10 +134,12 @@
 <!--		</repository>-->
 <!--	</repositories>-->
 	<build>
+		<finalName>gestion_orquestas</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- <version>1.0.0-SNAPSHOT</version> -->
 			</plugin>
 		</plugins>
 	</build>

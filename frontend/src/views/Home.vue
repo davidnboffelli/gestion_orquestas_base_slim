@@ -72,7 +72,9 @@ export default {
         },
     },
     mounted() {
-        axios.get("/api/news").then((response) => {
+        axios
+        .get("/api/news")
+        .then((response) => {
             this.latestNews = response.data.sort((aNew, bNew) => {
                 if (moment(aNew.publicDate).isBefore(moment(bNew.publicDate))) {
                     return 1;
@@ -81,7 +83,9 @@ export default {
                 }
             });
         });
-        axios.get("/api/shows").then((response) => {
+        axios
+        .get("/api/shows")
+        .then((response) => {
             this.nextShows = response.data;
         });
     },

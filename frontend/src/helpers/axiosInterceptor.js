@@ -28,4 +28,7 @@ axios.interceptors.response.use((response) =>
   }
 );
 
+// axios.defaults.baseURL = "http://backend:8080";
+// axios.defaults.baseURL = process.env.VUE_APP_API_URL;
+
 export default axios;

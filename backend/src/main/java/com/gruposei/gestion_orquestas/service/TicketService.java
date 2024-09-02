@@ -1,18 +1,5 @@
 package com.gruposei.gestion_orquestas.service;
 
-import com.google.zxing.WriterException;
-import com.gruposei.gestion_orquestas.model.Show;
-import com.gruposei.gestion_orquestas.model.Ticket;
-import com.gruposei.gestion_orquestas.model.User;
-import com.gruposei.gestion_orquestas.repositories.TicketRepository;
-import com.gruposei.gestion_orquestas.utils.MailSender;
-import com.gruposei.gestion_orquestas.utils.PDFGenerator;
-import com.itextpdf.text.DocumentException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-
-import javax.mail.MessagingException;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -21,6 +8,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import javax.mail.MessagingException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.google.zxing.WriterException;
+import com.gruposei.gestion_orquestas.model.Show;
+import com.gruposei.gestion_orquestas.model.Ticket;
+import com.gruposei.gestion_orquestas.model.User;
+import com.gruposei.gestion_orquestas.repositories.TicketRepository;
+import com.gruposei.gestion_orquestas.utils.MailSender;
+import com.gruposei.gestion_orquestas.utils.PDFGenerator;
+import com.itextpdf.text.DocumentException;
 
 @Service
 public class TicketService {
@@ -75,7 +77,7 @@ public class TicketService {
             InputStream inputStream = new ByteArrayInputStream(bytes);
 
             MailSender ms = new MailSender();
-            ms.sendMessageWithAttachment(user.getEmail(),"Entrada comprada","Usted a comprado exitosamente una entrada\nSe adjunta el PDF con el código QR", inputStream);
+            // ms.sendMessageWithAttachment(user.getEmail(),"Entrada comprada","Usted a comprado exitosamente una entrada\nSe adjunta el PDF con el código QR", inputStream);
         }
 
         return tickets;

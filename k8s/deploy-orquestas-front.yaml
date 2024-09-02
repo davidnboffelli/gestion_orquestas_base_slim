@@ -1,0 +1,52 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: deploy-orquestas-front
+  namespace: gestionorquestas
+spec:
+  strategy:
+    type: Recreate
+  selector:  
+    matchLabels:
+      app: orquestasfrontapp
+  replicas: 2
+  template:  
+    metadata:
+      labels:
+        app: orquestasfrontapp
+    spec:
+      containers:
+      - name: orquestasfrontapp
+        image: dboffelli/gestion_orquestas_frontend:1.0
+        resources:
+          limits:
+              memory: "300Mi"
+              cpu: "300m"
+          requests:
+              memory: "200Mi" 
+              cpu: "200m"
+        ports:
+        - containerPort: 80
+        env:
+          - name: BACKEND_URL
+            value: http://backend:8080
+        command: ["/bin/sh"]
+        args: ["-c", "envsubst '${BACKEND_URL}' < /etc/nginx/conf.d/default.template.conf > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
+      #     - name: DB_DATABASE_USER
+      #       valueFrom:
+      #         configMapKeyRef:
+      #           name: datos-concert
+      #           key: DB_DATABASE_USER
+      #     - name: DB_DATABASE
+      #       valueFrom:
+      #         configMapKeyRef:
+      #           name: datos-concert
+      #           key: DB_DATABASE
+      #     - name: DB_DATABASE_PASSWORD
+      #       valueFrom:
+      #         secretKeyRef:
+      #           name: secretos-concert
+      #           key: DB_DATABASE_PASSWORD
+      # imagePullSecrets:
+      # - name: regcredprod
+

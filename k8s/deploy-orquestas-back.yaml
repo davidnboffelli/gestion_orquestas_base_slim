@@ -1,0 +1,42 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: deploy-orquestas-back
+  namespace: gestionorquestas
+spec:
+  strategy:
+    type: Recreate
+  selector:  
+    matchLabels:
+      app: orquestasbackapp
+  replicas: 2
+  template:  
+    metadata:
+      labels:
+        app: orquestasbackapp
+    spec:
+      containers:
+      - name: orquestasbackapp
+        image: dboffelli/gestion_orquestas_backend:1.2
+        resources:
+          limits:
+              memory: "300Mi"
+              cpu: "300m"
+          requests:
+              memory: "200Mi" 
+              cpu: "200m"
+        ports:
+        - containerPort: 8080
+        env:
+          - name: SPRING_DB_HOST
+            value: postgres
+          - name: SPRING_DB_PORT
+            value: "5432"
+          - name: SPRING_DB_NAME
+            value: gestion_orquestas            
+          - name: SPRING_DB_USER
+            value: david
+          - name: SPRING_DB_PASSWORD
+            value: "123456"
+      # imagePullSecrets:
+      # - name: regcredprod

@@ -1,19 +1,17 @@
 package com.gruposei.gestion_orquestas.utils;
 
-import org.apache.commons.compress.utils.IOUtils;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMessageHelper;
-
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
+import org.apache.commons.compress.utils.IOUtils;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 
 public class MailSender {
 
@@ -22,9 +20,9 @@ public class MailSender {
         mailSender.setHost("smtp.mail.yahoo.com");
         mailSender.setPort(587);
 
-        mailSender.setUsername("davidboffelli@yahoo.com");
-        mailSender.setPassword("iporkrtzszeuitbt");
-
+        mailSender.setUsername("abcdef@yahoo.com");
+        mailSender.setPassword("123asdb");
+        // iporkrtzszeuitbt
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.auth", "true");

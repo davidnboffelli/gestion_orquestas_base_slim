@@ -35,6 +35,7 @@ export default {
   },
   data() {
     return {
+      baseURL: "http://backend:8080"
     };
   },
   mounted(){
