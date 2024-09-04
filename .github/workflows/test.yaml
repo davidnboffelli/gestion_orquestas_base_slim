@@ -50,4 +50,4 @@ jobs:
       run: |
         pwd
         ls
-        >/home/vboxuser/Workspace/PostBootcamp/gestion_orquestas_base/prueba
+        >/home/user/prueba
