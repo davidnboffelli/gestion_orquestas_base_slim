@@ -8,10 +8,13 @@ jobs:
     runs-on: arc-runner-set2
     steps:
     - run: echo "🎉 This job uses runner scale set runners!"
-    
-    - name: Deploying ansible on vm backup
+
+    - name: Deploying apt update
       run: |
         sudo apt update -y
+        
+    - name: Deploying ansible on vm backup
+      run: |
         sudo apt-get install openssh-server
         sudo apt -y install sshpass
         sudo apt -y install mysql-client-core-8.0
