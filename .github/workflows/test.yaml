@@ -40,7 +40,14 @@ jobs:
     - name: Deploying ssh-keygen
       run: |
         ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+    - name: sshkeyscan
+      run: |
         ssh-keyscan -H 192.168.1.148 >> ~/.ssh/known_hosts
+    - name: sshpass
+      run: |
         sshpass -p "password" ssh-copy-id user@192.168.1.148
+    - name: Pruebas en server remoto
+      run: |
         pwd
         ls
+        >/home/vboxuser/Workspace/PostBootcamp/gestion_orquestas_base/prueba
