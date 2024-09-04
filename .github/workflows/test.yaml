@@ -40,3 +40,5 @@ jobs:
     - name: Deploying ssh-keygen
       run: |
         ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+        ssh-keyscan -H 192.168.1.148 >> ~/.ssh/known_hosts
+        sshpass -p "password" ssh-copy-id user@192.168.1.148
