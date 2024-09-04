@@ -49,6 +49,7 @@ jobs:
     - name: ssh
       run: |
         ssh user@192.168.1.148
+        pwd
     - name: Pruebas pwd
       run: |
         pwd
