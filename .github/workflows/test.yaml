@@ -19,18 +19,18 @@ jobs:
     - name: Deploying ansible on vm backup
       run: |
         sudo apt -y install sshpass
-    - name: Deploying mysql-client on vm backup
-      run: |
-        sudo apt -y install mysql-client-core-8.0
-    - name: Deploying mysql-server on vm backup
-      run: |
-        sudo apt -y install mysql-server
-    - name: Deploying ansible on vm backup
-      run: |
-        sudo apt -y install ansible
-    - name: Deploying AzureCLI
-      run: |
-        curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+#   - name: Deploying mysql-client on vm backup
+#     run: |
+#       sudo apt -y install mysql-client-core-8.0
+#   - name: Deploying mysql-server on vm backup
+#     run: |
+#       sudo apt -y install mysql-server
+#   - name: Deploying ansible on vm backup
+#     run: |
+#       sudo apt -y install ansible
+#   - name: Deploying AzureCLI
+#     run: |
+#       curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
     - name: Deploying systemctl
       run: |
         sudo service ssh start
@@ -42,3 +42,5 @@ jobs:
         ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
         ssh-keyscan -H 192.168.1.148 >> ~/.ssh/known_hosts
         sshpass -p "password" ssh-copy-id user@192.168.1.148
+        pwd
+        ls
