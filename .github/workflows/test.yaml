@@ -49,13 +49,12 @@ jobs:
     - name: ssh
       run: |
         ssh user@192.168.1.148
-        pwd
     - name: Pruebas pwd
       run: |
-        pwd
+        ssh user@192.168.1.148 'pwd'
     - name: Pruebas ls
       run: |
-        ls -a
+        ssh user@192.168.1.148 'ls -a'
     - name: Pruebas crear archivo en servidor
       run: |
-        >/home/user/prueba
+        ssh user@192.168.1.148 '>/home/user/prueba'
