@@ -33,7 +33,10 @@ jobs:
         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
     - name: Deploying systemctl
       run: |
-        sudo systemctl enable ssh --now
+        sudo service ssh start
+        sudo update-rc.d ssh enable
+        sudo service ssh status
+
     - name: Deploying ssh-keygen
       run: |
         ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
