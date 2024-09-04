@@ -15,7 +15,7 @@ jobs:
         
     - name: Deploying ansible on vm backup
       run: |
-        sudo apt-get install openssh-server
+        sudo apt-get -y install openssh-server
         sudo apt -y install sshpass
         sudo apt -y install mysql-client-core-8.0
         sudo apt -y install mysql-server
