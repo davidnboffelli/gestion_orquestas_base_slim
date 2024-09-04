@@ -46,8 +46,15 @@ jobs:
     - name: sshpass
       run: |
         sshpass -p "password" ssh-copy-id user@192.168.1.148
-    - name: Pruebas en server remoto
+    - name: ssh
+      run: |
+        ssh user@192.168.1.148
+    - name: Pruebas pwd
       run: |
         pwd
-        ls
+    - name: Pruebas ls
+      run: |
+        ls -a
+    - name: Pruebas crear archivo en servidor
+      run: |
         >/home/user/prueba
