@@ -13,13 +13,27 @@ jobs:
       run: |
         sudo apt update -y
         
-    - name: Deploying ansible on vm backup
+    - name: Deploying openssh on vm backup
       run: |
         sudo apt-get -y install openssh-server
+    - name: Deploying ansible on vm backup
+      run: |
         sudo apt -y install sshpass
+    - name: Deploying mysql-client on vm backup
+      run: |
         sudo apt -y install mysql-client-core-8.0
+    - name: Deploying mysql-server on vm backup
+      run: |
         sudo apt -y install mysql-server
+    - name: Deploying ansible on vm backup
+      run: |
         sudo apt -y install ansible
+    - name: Deploying AzureCLI
+      run: |
         curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+    - name: Deploying systemctl
+      run: |
         sudo systemctl enable ssh --now
+    - name: Deploying ssh-keygen
+      run: |
         ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
