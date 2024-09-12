@@ -42,7 +42,7 @@ jobs:
         mkdir -p ~/.ssh
         ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -p 22 -H 192.168.1.160 >> ~/.ssh/known_hosts
+        ssh-keyscan -T 20 -H 192.168.1.160 >> ~/.ssh/known_hosts
         sudo apt-get -y install sshpass
 
     - name: sshpass
