@@ -28,16 +28,20 @@ jobs:
     - name: Deploying ssh-keygen
       run: |
         ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+
     - name: sshkeyscan
       run: |
-        ssh-keyscan -H 192.168.1.160 >> ~/.ssh/known_hosts
+        ssh-keyscan -p 22 -H 192.168.1.160 >> ~/.ssh/known_hosts
+
     - name: sshpass
       run: |
         sshpass -p "password" ssh-copy-id user@192.168.1.160
+
     - name: ssh
       run: |
         ssh user@192.168.1.148
         # ssh user@192.168.1.148 'pwd'
+
     - name: Install K3S
       run: |
         curl -sfL https://get.k3s.io | sh -
