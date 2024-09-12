@@ -1,9 +1,6 @@
 package com.gruposei.gestion_orquestas.service;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,8 +17,6 @@ import com.gruposei.gestion_orquestas.model.Show;
 import com.gruposei.gestion_orquestas.model.Ticket;
 import com.gruposei.gestion_orquestas.model.User;
 import com.gruposei.gestion_orquestas.repositories.TicketRepository;
-import com.gruposei.gestion_orquestas.utils.MailSender;
-import com.gruposei.gestion_orquestas.utils.PDFGenerator;
 import com.itextpdf.text.DocumentException;
 
 @Service
@@ -70,14 +65,6 @@ public class TicketService {
             ticket =ticketRepository.save(ticket);
             tickets.add(ticket);
 
-            PDFGenerator pdf = new PDFGenerator();
-            ByteArrayOutputStream bos = pdf.generatePDF(encodedCode,show.getName(),show.getDate());
-
-            byte[] bytes = bos.toByteArray();
-            InputStream inputStream = new ByteArrayInputStream(bytes);
-
-            MailSender ms = new MailSender();
-            // ms.sendMessageWithAttachment(user.getEmail(),"Entrada comprada","Usted a comprado exitosamente una entrada\nSe adjunta el PDF con el código QR", inputStream);
         }
 
         return tickets;
