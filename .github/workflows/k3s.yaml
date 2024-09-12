@@ -33,6 +33,9 @@ jobs:
     #   run: |
     #     ssh-keyscan -p 22 -H 192.168.1.160 >> ~/.ssh/known_hosts
 
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
     - name: Set up SSH key
       run: |
         env
