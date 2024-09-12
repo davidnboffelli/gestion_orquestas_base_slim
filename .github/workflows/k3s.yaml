@@ -5,7 +5,7 @@ on:
 jobs:
   Explore-GitHub-Actions:
     # You need to use the INSTALLATION_NAME from the previous step
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
     steps:
     - name: Deploying apt update
       run: |
