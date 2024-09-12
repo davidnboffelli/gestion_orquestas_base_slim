@@ -7,31 +7,40 @@ jobs:
     # You need to use the INSTALLATION_NAME from the previous step
     runs-on: ubuntu-latest
     steps:
-    - name: Deploying apt update
-      run: |
-        sudo apt update -y
+    # - name: Deploying apt update
+    #   run: |
+    #     sudo apt update -y
         
-    - name: Deploying openssh on vm backup
-      run: |
-        sudo apt-get -y install openssh-server
+    # - name: Deploying openssh on vm backup
+    #   run: |
+    #     sudo apt-get -y install openssh-server
         
-    - name: Deploying ansible on vm backup
-      run: |
-        sudo apt -y install sshpass
+    # - name: Deploying ansible on vm backup
+    #   run: |
+    #     sudo apt -y install sshpass
         
-    # - name: Deploying systemctl
-        # run: |
-        # sudo service ssh start
-        # sudo update-rc.d ssh enable
-        # sudo service ssh status
+    # # - name: Deploying systemctl
+    #     # run: |
+    #     # sudo service ssh start
+    #     # sudo update-rc.d ssh enable
+    #     # sudo service ssh status
 
-    - name: Deploying ssh-keygen
+    # - name: Deploying ssh-keygen
+    #   run: |
+    #     ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+
+    # - name: sshkeyscan
+    #   run: |
+    #     ssh-keyscan -p 22 -H 192.168.1.160 >> ~/.ssh/known_hosts
+
+    - name: Set up SSH key
       run: |
+        env
+        mkdir -p ~/.ssh
         ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
-
-    - name: sshkeyscan
-      run: |
+        chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -p 22 -H 192.168.1.160 >> ~/.ssh/known_hosts
+        sudo apt-get -y install sshpass
 
     - name: sshpass
       run: |
