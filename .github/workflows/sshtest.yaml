@@ -1,0 +1,28 @@
+name: SSH Setup and Connect
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Generate SSH key
+      run: |
+        ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
+        cat ~/.ssh/id_rsa.pub
+
+    - name: Add public key to remote server
+      run: |
+        sshpass -p "password" ssh -o StrictHostKeyChecking=no user@192.168.1.160 \
+        "echo $(cat ~/.ssh/id_rsa.pub) >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
+
+    - name: Connect to remote server
+      run: |
+        ssh user@192.168.1.160 "echo 'Connection successful!'"
