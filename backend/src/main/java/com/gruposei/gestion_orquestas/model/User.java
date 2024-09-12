@@ -1,12 +1,19 @@
 package com.gruposei.gestion_orquestas.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "users")
@@ -33,12 +40,6 @@ public class User {
     @JsonIgnore
     @ManyToMany(mappedBy = "usersMeeting")
     private List<MeetingMinute> usersInMeeting = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user")
-
-    private List<UserCloth> userCloths;
-
-
 
     public User() {
     }
@@ -149,13 +150,5 @@ public class User {
 
     public void setUsersInMeeting(List<MeetingMinute> usersInMeeting) {
         this.usersInMeeting = usersInMeeting;
-    }
-
-    public List<UserCloth> getUserCloths() {
-        return userCloths;
-    }
-
-    public void setUserCloths(List<UserCloth> userCloths) {
-        this.userCloths = userCloths;
     }
 }

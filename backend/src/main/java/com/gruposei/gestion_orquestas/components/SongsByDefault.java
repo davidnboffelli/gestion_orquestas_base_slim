@@ -1,5 +1,6 @@
 package com.gruposei.gestion_orquestas.components;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Base64;
@@ -153,11 +154,20 @@ public class SongsByDefault implements CommandLineRunner {
         musicalResourceService.create(musicalResource3);
 
     }
-    public String getBase64EncodedImage(String imageURL) throws IOException {
-
-        java.net.URL url = new java.net.URL(imageURL); 
-        InputStream is = url.openStream();  
-        byte[] bytes = org.apache.commons.io.IOUtils.toByteArray(is); 
+   public String getBase64EncodedImage(String imageURL) throws IOException {
+        java.net.URL url = new java.net.URL(imageURL);
+        InputStream is = url.openStream();
+        byte[] bytes = inputStreamToByteArray(is);
         return Base64.getEncoder().encodeToString(bytes);
+    }
+    
+    private byte[] inputStreamToByteArray(InputStream is) throws IOException {
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        int nRead;
+        byte[] data = new byte[1024];
+        while ((nRead = is.read(data, 0, data.length)) != -1) {
+            buffer.write(data, 0, nRead);
+        }
+        return buffer.toByteArray();
     }
 }

@@ -1,20 +1,33 @@
 package com.gruposei.gestion_orquestas.rest;
 
-import com.gruposei.gestion_orquestas.model.*;
-import com.gruposei.gestion_orquestas.responses.ApiRequestException;
-import com.gruposei.gestion_orquestas.responses.ResponseHandler;
-import com.gruposei.gestion_orquestas.service.*;
-import com.mercadopago.exceptions.MPConfException;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Optional;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gruposei.gestion_orquestas.model.Show;
+import com.gruposei.gestion_orquestas.model.Ticket;
+import com.gruposei.gestion_orquestas.model.User;
+import com.gruposei.gestion_orquestas.responses.ApiRequestException;
+import com.gruposei.gestion_orquestas.responses.ResponseHandler;
+import com.gruposei.gestion_orquestas.service.PaymentRequestService;
+import com.gruposei.gestion_orquestas.service.ShowService;
+import com.gruposei.gestion_orquestas.service.TicketService;
+import com.gruposei.gestion_orquestas.service.UserService;
 
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RestController
@@ -35,9 +48,6 @@ public class TicketREST {
 
     @Autowired
     private ResponseHandler responseHandler;
-
-    @Autowired
-    private MercadopagoBackurlsService mercadopagoBackurlsService;
 
     @Autowired
     private PaymentRequestService paymentRequestService;
