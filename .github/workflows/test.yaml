@@ -1,0 +1,60 @@
+name: Actions Runner Controller Demo
+on:
+  workflow_dispatch:
+
+jobs:
+  Explore-GitHub-Actions:
+    # You need to use the INSTALLATION_NAME from the previous step
+    runs-on: arc-runner-set2
+    steps:
+    - run: echo "🎉 This job uses runner scale set runners!"
+
+    - name: Deploying apt update
+      run: |
+        sudo apt update -y
+        
+    - name: Deploying openssh on vm backup
+      run: |
+        sudo apt-get -y install openssh-server
+    - name: Deploying ansible on vm backup
+      run: |
+        sudo apt -y install sshpass
+#   - name: Deploying mysql-client on vm backup
+#     run: |
+#       sudo apt -y install mysql-client-core-8.0
+#   - name: Deploying mysql-server on vm backup
+#     run: |
+#       sudo apt -y install mysql-server
+#   - name: Deploying ansible on vm backup
+#     run: |
+#       sudo apt -y install ansible
+#   - name: Deploying AzureCLI
+#     run: |
+#       curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+    - name: Deploying systemctl
+      run: |
+        sudo service ssh start
+        sudo update-rc.d ssh enable
+        sudo service ssh status
+
+    - name: Deploying ssh-keygen
+      run: |
+        ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+    - name: sshkeyscan
+      run: |
+        ssh-keyscan -H 192.168.1.148 >> ~/.ssh/known_hosts
+    - name: sshpass
+      run: |
+        sshpass -p "password" ssh-copy-id user@192.168.1.148
+    - name: ssh
+      run: |
+        ssh user@192.168.1.148
+    - name: Pruebas pwd
+      run: |
+        ssh user@192.168.1.148 'pwd'
+    - name: Pruebas ls
+      run: |
+        ssh user@192.168.1.148 'ls -a'
+    - name: Pruebas crear archivo en servidor
+      run: |
+        ssh user@192.168.1.148 '>/home/user/prueba'
