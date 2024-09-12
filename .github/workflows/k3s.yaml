@@ -1,0 +1,81 @@
+name: Actions Runner Controller Demo
+on:
+  workflow_dispatch:
+
+jobs:
+  Explore-GitHub-Actions:
+    # You need to use the INSTALLATION_NAME from the previous step
+    runs-on: ubuntu
+    steps:
+    - name: Deploying apt update
+      run: |
+        sudo apt update -y
+        
+    - name: Deploying openssh on vm backup
+      run: |
+        sudo apt-get -y install openssh-server
+        
+    - name: Deploying ansible on vm backup
+      run: |
+        sudo apt -y install sshpass
+        
+    # - name: Deploying systemctl
+        # run: |
+        # sudo service ssh start
+        # sudo update-rc.d ssh enable
+        # sudo service ssh status
+
+    - name: Deploying ssh-keygen
+      run: |
+        ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+    - name: sshkeyscan
+      run: |
+        ssh-keyscan -H 192.168.1.160 >> ~/.ssh/known_hosts
+    - name: sshpass
+      run: |
+        sshpass -p "password" ssh-copy-id user@192.168.1.160
+    - name: ssh
+      run: |
+        ssh user@192.168.1.148
+        # ssh user@192.168.1.148 'pwd'
+    - name: Install K3S
+      run: |
+        curl -sfL https://get.k3s.io | sh -
+
+    - name: Copy k3s config
+      run: |
+        mkdir $HOME/.kube
+        sudo cp /etc/rancher/k3s/k3s.yaml $HOME/.kube/config
+        sudo chmod 644 $HOME/.kube/config
+
+    - name: Check K3S
+      run: |
+        kubectl get pods -n kube-system
+
+    - name: Install Helm
+      run: |
+        curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+        chmod 700 get_helm.sh
+        ./get_helm.sh
+
+    - name: Check K3S
+      run: |
+        kubectl get pods -n kube-system
+
+    - name: Check K3S
+      run: |
+        INSTALLATION_NAME="arc-runner-set"
+        NAMESPACE="arc-runners"
+        GITHUB_CONFIG_URL="https://github.com/davidnboffelli/gestion_orquestas_base_slim"
+        GITHUB_PAT="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"
+        helm install "${INSTALLATION_NAME}" \
+            --namespace "${NAMESPACE}" \
+            --create-namespace \
+            --set githubConfigUrl="${GITHUB_CONFIG_URL}" \
+            --set githubConfigSecret.github_token="${GITHUB_PAT}" \
+            oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set
+
+    - name: Checks
+      run: |
+        helm list -A
+        kubectl get pods -n arc-systems
